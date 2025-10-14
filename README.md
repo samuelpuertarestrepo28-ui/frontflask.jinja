@@ -12,7 +12,8 @@ Este proyecto implementa un frontend en **Flask** utilizando el motor de plantil
   - `base.html` (plantilla base con encabezado, menú y pie de página)  
   - `index.html` (inicio)  
   - `acerca.html` (información del proyecto)  
-  - `productos.html` (página de productos)  
+  - `productos.html` (página de productos) 
+  - `clientes.html` (página de clientes)
 - **static/**: archivos estáticos, por ejemplo `estilos.css`.  
 - **requirements.txt**: dependencias exactas del proyecto.  
 

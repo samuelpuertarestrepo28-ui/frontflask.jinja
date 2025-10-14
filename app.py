@@ -3,6 +3,7 @@ from flask import Flask, render_template
 
 # Importar el Blueprint que contiene las rutas de productos
 from rutas_productos import rutas_productos
+from rutas_clientes import rutas_clientes
 
 # Crear la instancia de la aplicación Flask
 aplicacion = Flask(__name__)
@@ -10,6 +11,7 @@ aplicacion = Flask(__name__)
 # ------------------- Registro de Blueprints -------------------
 # Registrar el Blueprint de productos en la aplicación principal
 aplicacion.register_blueprint(rutas_productos)
+aplicacion.register_blueprint(rutas_clientes)
 
 # ------------------- Rutas principales -------------------
 
