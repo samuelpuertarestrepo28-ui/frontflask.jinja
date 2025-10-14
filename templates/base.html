@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block titulo_pagina %}Proyecto Flask con Jinja2{% endblock %}</title>
+    <!-- Cargar el archivo de estilos -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+    <!-- Menú de navegación principal -->
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+                <li><a href="{{ url_for('acerca') }}">Acerca</a></li>
+                <li><a href="{{ url_for('rutas_productos.productos') }}">Productos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <h1>{% block encabezado %}{% endblock %}</h1>
+        <section>
+            {% block contenido %}{% endblock %}
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Proyecto Flask con Jinja2 - © 2025</p>
+    </footer>
+</body>
+</html>
+
