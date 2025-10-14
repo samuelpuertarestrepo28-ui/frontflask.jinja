@@ -1,8 +1,15 @@
 # Importar la clase principal de Flask y la función para renderizar plantillas
 from flask import Flask, render_template
 
+# Importar el Blueprint que contiene las rutas de productos
+from rutas_productos import rutas_productos
+
 # Crear la instancia de la aplicación Flask
 aplicacion = Flask(__name__)
+
+# ------------------- Registro de Blueprints -------------------
+# Registrar el Blueprint de productos en la aplicación principal
+aplicacion.register_blueprint(rutas_productos)
 
 # ------------------- Rutas principales -------------------
 
@@ -23,20 +30,12 @@ def acerca():
     """
     return render_template("acerca.html")
 
-
-@aplicacion.route("/productos")
-def productos():
-    """
-    Función asociada a la ruta /productos.
-    Retorna la plantilla productos.html que mostrará el formulario y la lista de productos.
-    """
-    return render_template("productos.html")
-
 # ---------------------------------------------------------
 
 # Punto de entrada de la aplicación
 if __name__ == "__main__":
     # Ejecutar la aplicación en modo depuración, en el puerto 5000
-    # host="0.0.0.0" permite acceso desde la red local
+    # host="0.0.0.0" permite que la app sea accesible desde la red local
     # debug=True permite reinicio automático ante cambios
     aplicacion.run(host="0.0.0.0", port=5000, debug=True)
+
