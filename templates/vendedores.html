@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>Gestión de Vendedores</h1>
+
+    <!-- ===============================
+         Formulario de creación/actualización
+         - Usa el modo "crear" o "actualizar" según lo que se envíe desde Flask
+         - Si "vendedor" tiene datos, los carga en el formulario
+    ================================== -->
+    <form method="post" 
+          action="{{ url_for('rutas_vendedores.crear_vendedor') if modo == 'crear' else url_for('rutas_vendedores.actualizar_vendedor') }}">
+        
+        <!-- Campo código -->
+        <input type="text" name="codigo" placeholder="Código"
+               value="{{ vendedor.codigo if vendedor else '' }}" required>
+
+        <!-- Campo nombre -->
+        <input type="text" name="nombre" placeholder="Nombre"
+               value="{{ vendedor.nombre if vendedor else '' }}" required>
+
+        <!-- Campo teléfono -->
+        <input type="text" name="telefono" placeholder="Teléfono"
+               value="{{ vendedor.telefono if vendedor else '' }}" required>
+
+        <!-- Botón que cambia dinámicamente -->
+        <button type="submit">
+            {{ "Crear" if modo == "crear" else "Actualizar" }}
+        </button>
+    </form>
+
+    <!-- ===============================
+         Formulario de búsqueda
+         - Permite buscar un vendedor por su código
+         - Si lo encuentra, carga sus datos en el formulario principal
+    ================================== -->
+    <form method="post" action="{{ url_for('rutas_vendedores.buscar_vendedor') }}">
+        <input type="text" name="codigo_buscar" placeholder="Buscar por código" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Mensaje de error o notificación -->
+    {% if mensaje %}
+        <p style="color: red;">{{ mensaje }}</p>
+    {% endif %}
+
+    <!-- ===============================
+         Tabla con todos los vendedores
+         - Los vendedores vienen desde la API en la clave "datos"
+         - Cada fila muestra un vendedor con su botón de eliminar
+    ================================== -->
+    <table border="1" cellpadding="5" cellspacing="0" style="margin: 20px auto;">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for v in vendedores %}
+                <tr>
+                    <td>{{ v.codigo }}</td>
+                    <td>{{ v.nombre }}</td>
+                    <td>{{ v.telefono }}</td>
+                    <td>
+                        <!-- Formulario para eliminar un vendedor -->
+                        <form method="post" 
+                              action="{{ url_for('rutas_vendedores.eliminar_vendedor', codigo=v.codigo) }}">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

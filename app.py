@@ -5,6 +5,8 @@ from flask import Flask, render_template
 from rutas_productos import rutas_productos
 from rutas_clientes import rutas_clientes
 from rutas_facturas import rutas_facturas
+from rutas_facturas import rutas_vendedores
+
 
 # Crear la instancia de la aplicación Flask
 aplicacion = Flask(__name__)
@@ -14,6 +16,7 @@ aplicacion = Flask(__name__)
 aplicacion.register_blueprint(rutas_productos)
 aplicacion.register_blueprint(rutas_clientes)
 aplicacion.register_blueprint(rutas_facturas)
+aplicacion.register_blueprint(rutas_vendedores)
 
 # ------------------- Rutas principales -------------------
 
