@@ -7,6 +7,7 @@ from rutas_clientes import rutas_clientes
 from rutas_facturas import rutas_facturas
 from rutas_vendedores import rutas_vendedores
 from rutas_personas import rutas_personas
+from rutas_empresas import rutas_empresas
 
 
 # Crear la instancia de la aplicación Flask
@@ -19,6 +20,7 @@ aplicacion.register_blueprint(rutas_clientes)
 aplicacion.register_blueprint(rutas_facturas)
 aplicacion.register_blueprint(rutas_vendedores)
 aplicacion.register_blueprint(rutas_personas)
+aplicacion.register_blueprint(rutas_empresas)
 
 # ------------------- Rutas principales -------------------
 
